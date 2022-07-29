@@ -1,0 +1,51 @@
+pip install django    				:		install django
+py -m django --version				:		check versioon of django(Every python version are not suitable with evrey version
+								of django
+django-admin startproject hello			:		to create project (hello is the project name)
+python manage.py server				:		to run server
+python manage.py startapp home			:		to create app(app in django is webpage, home is app(webpage))	
+python manage.py makemigrations			:		to detect changes in code for database migration
+python manage.py migrate			: 		creates database
+python manage.py createsuperuser		:		to create admin id in database
+
+
+To include format of any hrml file in other
+{% extends 'header.html' %}
+
+{% block title %}Home{% endblock title %}Home
+{% block body %}
+This is Home block body
+{% endblock body %}
+
+
+for creating database follow 4 steps
+steps1 - create model class in model.py
+steps2 - register model.py  in admin.py
+steps3 - register app.py in setting.py in installed app
+steps4 - run migration
+
+
+# to how data in database by name(for email use email etc...)
+    def __str__(self) -> str:
+        return self.name
+
+#below contact word will be use as the class name of model
+#query in sqllite of django
+link for django query document		->	https://docs.djangoproject.com/en/3.2/topics/db/queries/
+
+# to view data from database
+Contact.objects.all()[0].name		#to get name
+Contact.objects.all()[0].email		#to get email
+
+#to filter objects by some value.suppose to get all data whiose name is Molu
+Contact.objects.filter(name="Molu")		#to get all entry in database whose name is Molu
+Contact.objects.filter(name="Molu").first()/last()		#to get first/last entry in database whose name is Molu
+Contact.objects.filter(email="patelravi1102001@gmail.com")	#to get all entry in database whose email is patelravi1102001@gmail.com
+
+#use first()/last() for getting first or last data if for certain query more than one entry return
+
+#to edit in database. Suppose to edit phone number
+ins = Contact.objects.all().filter(name="Molu", mobile="6354202922")[0]
+ins.mobile = "52416354"
+ins.save()
+
